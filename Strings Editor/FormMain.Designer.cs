@@ -34,12 +34,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grpSettings = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtMinStrSize = new System.Windows.Forms.TextBox();
             this.chkUseFilters = new System.Windows.Forms.CheckBox();
             this.grpStrings = new System.Windows.Forms.GroupBox();
             this.lstStrings = new System.Windows.Forms.ListBox();
             this.cmsStrings = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnEditString = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbStringSize = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.chkBackup = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.grpSettings.SuspendLayout();
             this.grpStrings.SuspendLayout();
@@ -78,15 +80,14 @@
             // 
             // grpSettings
             // 
+            this.grpSettings.Controls.Add(this.cbStringSize);
             this.grpSettings.Controls.Add(this.chkUseFilters);
-            this.grpSettings.Controls.Add(this.txtMinStrSize);
             this.grpSettings.Controls.Add(this.label3);
             this.grpSettings.Location = new System.Drawing.Point(146, 104);
             this.grpSettings.Name = "grpSettings";
             this.grpSettings.Size = new System.Drawing.Size(365, 79);
             this.grpSettings.TabIndex = 3;
             this.grpSettings.TabStop = false;
-            this.grpSettings.Visible = false;
             // 
             // label3
             // 
@@ -97,14 +98,6 @@
             this.label3.Size = new System.Drawing.Size(125, 15);
             this.label3.TabIndex = 0;
             this.label3.Text = "Minimum string size:";
-            // 
-            // txtMinStrSize
-            // 
-            this.txtMinStrSize.Location = new System.Drawing.Point(179, 18);
-            this.txtMinStrSize.Name = "txtMinStrSize";
-            this.txtMinStrSize.Size = new System.Drawing.Size(35, 20);
-            this.txtMinStrSize.TabIndex = 3;
-            this.txtMinStrSize.Text = "4";
             // 
             // chkUseFilters
             // 
@@ -122,16 +115,20 @@
             // 
             // grpStrings
             // 
+            this.grpStrings.Controls.Add(this.chkBackup);
+            this.grpStrings.Controls.Add(this.button1);
             this.grpStrings.Controls.Add(this.lstStrings);
             this.grpStrings.Location = new System.Drawing.Point(146, 202);
             this.grpStrings.Name = "grpStrings";
-            this.grpStrings.Size = new System.Drawing.Size(365, 232);
+            this.grpStrings.Size = new System.Drawing.Size(365, 255);
             this.grpStrings.TabIndex = 5;
             this.grpStrings.TabStop = false;
             this.grpStrings.Visible = false;
             // 
             // lstStrings
             // 
+            this.lstStrings.ContextMenuStrip = this.cmsStrings;
+            this.lstStrings.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstStrings.FormattingEnabled = true;
             this.lstStrings.Location = new System.Drawing.Point(6, 19);
             this.lstStrings.Name = "lstStrings";
@@ -150,13 +147,52 @@
             this.btnEditString.Name = "btnEditString";
             this.btnEditString.Size = new System.Drawing.Size(94, 22);
             this.btnEditString.Text = "Edit";
+            this.btnEditString.Click += new System.EventHandler(this.btnEditString_Click);
+            // 
+            // cbStringSize
+            // 
+            this.cbStringSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStringSize.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbStringSize.FormattingEnabled = true;
+            this.cbStringSize.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.cbStringSize.Location = new System.Drawing.Point(177, 16);
+            this.cbStringSize.Name = "cbStringSize";
+            this.cbStringSize.Size = new System.Drawing.Size(33, 23);
+            this.cbStringSize.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 224);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(139, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Build modified assembly";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // chkBackup
+            // 
+            this.chkBackup.AutoSize = true;
+            this.chkBackup.Location = new System.Drawing.Point(151, 228);
+            this.chkBackup.Name = "chkBackup";
+            this.chkBackup.Size = new System.Drawing.Size(96, 17);
+            this.chkBackup.TabIndex = 2;
+            this.chkBackup.Text = "Create backup";
+            this.chkBackup.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 446);
+            this.ClientSize = new System.Drawing.Size(652, 481);
             this.Controls.Add(this.grpStrings);
             this.Controls.Add(this.grpSettings);
             this.Controls.Add(this.groupBox1);
@@ -174,6 +210,7 @@
             this.grpSettings.ResumeLayout(false);
             this.grpSettings.PerformLayout();
             this.grpStrings.ResumeLayout(false);
+            this.grpStrings.PerformLayout();
             this.cmsStrings.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -187,11 +224,13 @@
         private System.Windows.Forms.GroupBox grpSettings;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox chkUseFilters;
-        private System.Windows.Forms.TextBox txtMinStrSize;
         private System.Windows.Forms.GroupBox grpStrings;
-        private System.Windows.Forms.ListBox lstStrings;
         private System.Windows.Forms.ContextMenuStrip cmsStrings;
         private System.Windows.Forms.ToolStripMenuItem btnEditString;
+        private System.Windows.Forms.ComboBox cbStringSize;
+        public System.Windows.Forms.ListBox lstStrings;
+        private System.Windows.Forms.CheckBox chkBackup;
+        private System.Windows.Forms.Button button1;
     }
 }
 
