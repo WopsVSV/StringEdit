@@ -31,6 +31,7 @@ namespace Strings_Editor
 
         private void btnReplace_Click(object sender, EventArgs e)
         {
+            // Check length
             if (txtToReplace.Text.Length < txtInputText.Text.Length)
             {
                 while (txtToReplace.Text.Length != txtInputText.Text.Length)
@@ -42,14 +43,34 @@ namespace Strings_Editor
                 txtToReplace.Text = txtToReplace.Text.Substring(0, txtInputText.Text.Length);
             }
 
+            int unicodeMods, asciiMods;
+            Utility.Result result;
+
+            #region Unicode strings
             var inputBytes = GetRealBytes(txtInputText.Text);
             var replaceBytes = GetRealBytes(txtToReplace.Text);
+            result = Utility.ReplaceBytes(main.assemblyBytes, inputBytes, replaceBytes);
+            if (result.Worked)
+                main.assemblyBytes = result.Bytes;
 
-            main.assemblyBytes = Utility.ReplaceBytes(main.assemblyBytes, inputBytes, replaceBytes);
+            unicodeMods = Utility.replacesDone;
+
+            #endregion
+
+            #region ASCII strings
+            var inputBytesASCII = System.Text.Encoding.ASCII.GetBytes(txtInputText.Text);
+            var replaceBytesASCII = System.Text.Encoding.ASCII.GetBytes(txtToReplace.Text);
+            result = Utility.ReplaceBytes(main.assemblyBytes, inputBytesASCII, replaceBytesASCII);
+            if (result.Worked)
+                main.assemblyBytes = result.Bytes;
+
+            asciiMods = Utility.replacesDone;
+            #endregion
 
             main.lstStrings.Items[index] = txtToReplace.Text;
 
-            MessageBox.Show($"Replaced {Utility.replacesDone} occurences");
+            MessageBox.Show(
+                $"Replaced {unicodeMods + asciiMods} occurences.\nUnicode: {unicodeMods}\nASCII: {asciiMods}");
 
             this.Close();
         }

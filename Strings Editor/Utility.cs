@@ -12,6 +12,17 @@ namespace Strings_Editor
     {
         public static int replacesDone;
 
+        public class Result
+        {
+            public bool Worked { get; set; }
+            public byte[] Bytes { get; set; }
+            public Result(bool w, byte[] b)
+            {
+                Worked = w;
+                Bytes = b;
+            }
+        }
+
         public static int FindBytes(byte[] src, byte[] find)
         {
             int index = -1;
@@ -41,7 +52,7 @@ namespace Strings_Editor
             return index;
         }
 
-        public static byte[] ReplaceBytes(byte[] src, byte[] search, byte[] repl)
+        public static Result ReplaceBytes(byte[] src, byte[] search, byte[] repl)
         {
             replacesDone = 0;
             byte[] dst = null;
@@ -72,7 +83,15 @@ namespace Strings_Editor
 
                 index = FindBytes(dst, search);
             }
-            return dst;
+
+            if (dst == null)
+            {
+                return new Result(false, new byte[0]);
+            }
+            else
+            {
+                return new Result(true, dst);
+            }
         }
 
         /// <summary>
