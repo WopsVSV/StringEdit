@@ -40,7 +40,7 @@
             this.cmsStrings = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnEditString = new System.Windows.Forms.ToolStripMenuItem();
             this.cbStringSize = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnMod = new System.Windows.Forms.Button();
             this.chkBackup = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.grpSettings.SuspendLayout();
@@ -116,7 +116,7 @@
             // grpStrings
             // 
             this.grpStrings.Controls.Add(this.chkBackup);
-            this.grpStrings.Controls.Add(this.button1);
+            this.grpStrings.Controls.Add(this.btnMod);
             this.grpStrings.Controls.Add(this.lstStrings);
             this.grpStrings.Location = new System.Drawing.Point(146, 202);
             this.grpStrings.Name = "grpStrings";
@@ -168,14 +168,15 @@
             this.cbStringSize.Size = new System.Drawing.Size(33, 23);
             this.cbStringSize.TabIndex = 5;
             // 
-            // button1
+            // btnMod
             // 
-            this.button1.Location = new System.Drawing.Point(6, 224);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Build modified assembly";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnMod.Location = new System.Drawing.Point(6, 224);
+            this.btnMod.Name = "btnMod";
+            this.btnMod.Size = new System.Drawing.Size(139, 23);
+            this.btnMod.TabIndex = 1;
+            this.btnMod.Text = "Build modified assembly";
+            this.btnMod.UseVisualStyleBackColor = true;
+            this.btnMod.Click += new System.EventHandler(this.btnMod_Click);
             // 
             // chkBackup
             // 
@@ -230,7 +231,7 @@
         private System.Windows.Forms.ComboBox cbStringSize;
         public System.Windows.Forms.ListBox lstStrings;
         private System.Windows.Forms.CheckBox chkBackup;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMod;
     }
 }
 

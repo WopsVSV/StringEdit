@@ -14,6 +14,8 @@ namespace Strings_Editor
     public partial class FormMain : Form
     {
         private string extractorFile;
+        public byte[] assemblyBytes;
+        private string filePath;
 
         /// <summary>
         /// Initializes the components
@@ -43,7 +45,7 @@ namespace Strings_Editor
         private void FormMain_DragDrop(object sender, DragEventArgs e)
         {
             // We know it's a single file because of the DragEnter event
-            var filePath = e.GetDragItems()[0];
+            filePath = e.GetDragItems()[0];
 
             // Choose the strings assembly version
             extractorFile = Utility.InternalCheckIsWow64() ? "strings64.exe" : "strings32.exe";
@@ -82,6 +84,9 @@ namespace Strings_Editor
                     }
                 }               
             }
+            
+            // Get bytes
+            assemblyBytes = File.ReadAllBytes(filePath);
 
             grpStrings.Visible = true;
         }
@@ -128,6 +133,13 @@ namespace Strings_Editor
                 return;
 
             new FormReplace(lstStrings.SelectedItem.ToString(), lstStrings.SelectedIndex).Show();
+        }
+
+        private void btnMod_Click(object sender, EventArgs e)
+        {
+            var basePath = Path.GetDirectoryName(filePath);
+
+            File.WriteAllBytes(basePath + "/" + Path.GetFileNameWithoutExtension(filePath) + "_mod" + Path.GetExtension(filePath), assemblyBytes);
         }
     }
 }

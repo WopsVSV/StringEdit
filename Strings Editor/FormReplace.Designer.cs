@@ -33,6 +33,8 @@
             this.txtToReplace = new System.Windows.Forms.TextBox();
             this.btnReplace = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chkInstructions = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // txtInputText
@@ -79,18 +81,42 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 108);
+            this.label2.Location = new System.Drawing.Point(12, 133);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(222, 60);
             this.label2.TabIndex = 4;
             this.label2.Text = "Careful! The text must be the of the \r\nsame length as the original text. \r\nIf the" +
     " length is not equal there will \r\nbe empty spaces added until the end.";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 204);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(222, 30);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Additionally, replacing certain strings \r\nmight render the assembly corrupt.";
+            // 
+            // chkInstructions
+            // 
+            this.chkInstructions.AutoSize = true;
+            this.chkInstructions.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkInstructions.Location = new System.Drawing.Point(12, 105);
+            this.chkInstructions.Name = "chkInstructions";
+            this.chkInstructions.Size = new System.Drawing.Size(74, 15);
+            this.chkInstructions.TabIndex = 6;
+            this.chkInstructions.TabStop = true;
+            this.chkInstructions.Text = "Instructions";
+            this.chkInstructions.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.chkInstructions_LinkClicked);
+            // 
             // FormReplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(247, 181);
+            this.ClientSize = new System.Drawing.Size(247, 132);
+            this.Controls.Add(this.chkInstructions);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnReplace);
             this.Controls.Add(this.txtToReplace);
@@ -117,5 +143,7 @@
         private System.Windows.Forms.TextBox txtToReplace;
         private System.Windows.Forms.Button btnReplace;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel chkInstructions;
     }
 }

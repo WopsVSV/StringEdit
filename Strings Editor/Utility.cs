@@ -10,6 +10,8 @@ namespace Strings_Editor
 {
     public static class Utility
     {
+        public static int replacesDone;
+
         public static int FindBytes(byte[] src, byte[] find)
         {
             int index = -1;
@@ -39,24 +41,36 @@ namespace Strings_Editor
             return index;
         }
 
-        public static byte[] ReplaceBytes(this byte[] src, byte[] search, byte[] repl)
+        public static byte[] ReplaceBytes(byte[] src, byte[] search, byte[] repl)
         {
+            replacesDone = 0;
             byte[] dst = null;
+            byte[] temp = null;
             int index = FindBytes(src, search);
-            if (index >= 0)
+            while (index >= 0)
             {
-                dst = new byte[src.Length - search.Length + repl.Length];
+                if (temp == null)
+                    temp = src;
+                else
+                    temp = dst;
+
+                dst = new byte[temp.Length - search.Length + repl.Length];
+
                 // before found array
-                Buffer.BlockCopy(src, 0, dst, 0, index);
+                Buffer.BlockCopy(temp, 0, dst, 0, index);
                 // repl copy
                 Buffer.BlockCopy(repl, 0, dst, index, repl.Length);
                 // rest of src array
                 Buffer.BlockCopy(
-                    src,
+                    temp,
                     index + search.Length,
                     dst,
                     index + repl.Length,
-                    src.Length - (index + search.Length));
+                    temp.Length - (index + search.Length));
+
+                replacesDone++;
+
+                index = FindBytes(dst, search);
             }
             return dst;
         }
