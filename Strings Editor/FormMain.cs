@@ -17,6 +17,7 @@ namespace Strings_Editor
         public byte[] assemblyBytes;
         public string filePath;
         public bool firstReplace = true;
+        public bool acceptFile = true;
 
         /// <summary>
         /// Initializes the components
@@ -31,9 +32,10 @@ namespace Strings_Editor
         /// </summary>
         private void FormMain_DragEnter(object sender, DragEventArgs e)
         {
-          if (e.Data.GetDataPresent(DataFormats.FileDrop, false)  // If data exists
+          if (e.Data.GetDataPresent(DataFormats.FileDrop, false)   // If data exists
                 && e.GetDragItems().Length == 1                     // If it's a single item
-                && File.Exists(e.GetDragItems()[0]))                // If it's a file
+                && File.Exists(e.GetDragItems()[0])                 // If it's a file
+                && acceptFile)                                      // If we are supposed to handle it
 
                 e.Effect = DragDropEffects.Copy;
             else
@@ -144,6 +146,18 @@ namespace Strings_Editor
             btnMod.Enabled = false;
             lstStrings.Enabled = false;
             btnReset.Enabled = true;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            lstStrings.Enabled = true;
+            acceptFile = true;
+            grpSettings.Enabled = true;
+            grpStrings.Visible = false;
+            lstStrings.Items.Clear();
+            btnReset.Enabled = false;
+            btnMod.Enabled = true;
+            firstReplace = true;
         }
     }
 }
