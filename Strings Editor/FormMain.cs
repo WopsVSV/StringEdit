@@ -15,7 +15,8 @@ namespace Strings_Editor
     {
         private string extractorFile;
         public byte[] assemblyBytes;
-        private string filePath;
+        public string filePath;
+        public bool firstReplace = true;
 
         /// <summary>
         /// Initializes the components
@@ -137,9 +138,12 @@ namespace Strings_Editor
 
         private void btnMod_Click(object sender, EventArgs e)
         {
-            var basePath = Path.GetDirectoryName(filePath);
+            File.WriteAllBytes(filePath, assemblyBytes);
 
-            File.WriteAllBytes(basePath + "/" + Path.GetFileNameWithoutExtension(filePath) + "_mod" + Path.GetExtension(filePath), assemblyBytes);
+            lstStrings.SelectedItem = null;
+            btnMod.Enabled = false;
+            lstStrings.Enabled = false;
+            btnReset.Enabled = true;
         }
     }
 }

@@ -33,15 +33,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grpSettings = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.chkBackup = new System.Windows.Forms.CheckBox();
+            this.cbStringSize = new System.Windows.Forms.ComboBox();
             this.chkUseFilters = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.grpStrings = new System.Windows.Forms.GroupBox();
+            this.btnMod = new System.Windows.Forms.Button();
             this.lstStrings = new System.Windows.Forms.ListBox();
             this.cmsStrings = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnEditString = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbStringSize = new System.Windows.Forms.ComboBox();
-            this.btnMod = new System.Windows.Forms.Button();
-            this.chkBackup = new System.Windows.Forms.CheckBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpSettings.SuspendLayout();
             this.grpStrings.SuspendLayout();
@@ -80,24 +81,44 @@
             // 
             // grpSettings
             // 
+            this.grpSettings.Controls.Add(this.chkBackup);
             this.grpSettings.Controls.Add(this.cbStringSize);
             this.grpSettings.Controls.Add(this.chkUseFilters);
             this.grpSettings.Controls.Add(this.label3);
             this.grpSettings.Location = new System.Drawing.Point(146, 104);
             this.grpSettings.Name = "grpSettings";
-            this.grpSettings.Size = new System.Drawing.Size(365, 79);
+            this.grpSettings.Size = new System.Drawing.Size(365, 99);
             this.grpSettings.TabIndex = 3;
             this.grpSettings.TabStop = false;
             // 
-            // label3
+            // chkBackup
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Minimum string size:";
+            this.chkBackup.AutoSize = true;
+            this.chkBackup.Location = new System.Drawing.Point(13, 72);
+            this.chkBackup.Name = "chkBackup";
+            this.chkBackup.Size = new System.Drawing.Size(96, 17);
+            this.chkBackup.TabIndex = 2;
+            this.chkBackup.Text = "Create backup";
+            this.chkBackup.UseVisualStyleBackColor = true;
+            // 
+            // cbStringSize
+            // 
+            this.cbStringSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStringSize.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbStringSize.FormattingEnabled = true;
+            this.cbStringSize.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.cbStringSize.Location = new System.Drawing.Point(177, 16);
+            this.cbStringSize.Name = "cbStringSize";
+            this.cbStringSize.Size = new System.Drawing.Size(33, 23);
+            this.cbStringSize.TabIndex = 5;
             // 
             // chkUseFilters
             // 
@@ -113,17 +134,37 @@
             this.chkUseFilters.Text = "Use filters (recommended):";
             this.chkUseFilters.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(10, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(125, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Minimum string size:";
+            // 
             // grpStrings
             // 
-            this.grpStrings.Controls.Add(this.chkBackup);
+            this.grpStrings.Controls.Add(this.btnReset);
             this.grpStrings.Controls.Add(this.btnMod);
             this.grpStrings.Controls.Add(this.lstStrings);
-            this.grpStrings.Location = new System.Drawing.Point(146, 202);
+            this.grpStrings.Location = new System.Drawing.Point(146, 222);
             this.grpStrings.Name = "grpStrings";
             this.grpStrings.Size = new System.Drawing.Size(365, 255);
             this.grpStrings.TabIndex = 5;
             this.grpStrings.TabStop = false;
             this.grpStrings.Visible = false;
+            // 
+            // btnMod
+            // 
+            this.btnMod.Location = new System.Drawing.Point(6, 224);
+            this.btnMod.Name = "btnMod";
+            this.btnMod.Size = new System.Drawing.Size(139, 23);
+            this.btnMod.TabIndex = 1;
+            this.btnMod.Text = "Build modified assembly";
+            this.btnMod.UseVisualStyleBackColor = true;
+            this.btnMod.Click += new System.EventHandler(this.btnMod_Click);
             // 
             // lstStrings
             // 
@@ -149,51 +190,22 @@
             this.btnEditString.Text = "Edit";
             this.btnEditString.Click += new System.EventHandler(this.btnEditString_Click);
             // 
-            // cbStringSize
+            // btnReset
             // 
-            this.cbStringSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbStringSize.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbStringSize.FormattingEnabled = true;
-            this.cbStringSize.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8"});
-            this.cbStringSize.Location = new System.Drawing.Point(177, 16);
-            this.cbStringSize.Name = "cbStringSize";
-            this.cbStringSize.Size = new System.Drawing.Size(33, 23);
-            this.cbStringSize.TabIndex = 5;
-            // 
-            // btnMod
-            // 
-            this.btnMod.Location = new System.Drawing.Point(6, 224);
-            this.btnMod.Name = "btnMod";
-            this.btnMod.Size = new System.Drawing.Size(139, 23);
-            this.btnMod.TabIndex = 1;
-            this.btnMod.Text = "Build modified assembly";
-            this.btnMod.UseVisualStyleBackColor = true;
-            this.btnMod.Click += new System.EventHandler(this.btnMod_Click);
-            // 
-            // chkBackup
-            // 
-            this.chkBackup.AutoSize = true;
-            this.chkBackup.Location = new System.Drawing.Point(151, 228);
-            this.chkBackup.Name = "chkBackup";
-            this.chkBackup.Size = new System.Drawing.Size(96, 17);
-            this.chkBackup.TabIndex = 2;
-            this.chkBackup.Text = "Create backup";
-            this.chkBackup.UseVisualStyleBackColor = true;
+            this.btnReset.Enabled = false;
+            this.btnReset.Location = new System.Drawing.Point(151, 224);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(76, 23);
+            this.btnReset.TabIndex = 2;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 481);
+            this.ClientSize = new System.Drawing.Size(652, 488);
             this.Controls.Add(this.grpStrings);
             this.Controls.Add(this.grpSettings);
             this.Controls.Add(this.groupBox1);
@@ -211,7 +223,6 @@
             this.grpSettings.ResumeLayout(false);
             this.grpSettings.PerformLayout();
             this.grpStrings.ResumeLayout(false);
-            this.grpStrings.PerformLayout();
             this.cmsStrings.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -230,8 +241,9 @@
         private System.Windows.Forms.ToolStripMenuItem btnEditString;
         private System.Windows.Forms.ComboBox cbStringSize;
         public System.Windows.Forms.ListBox lstStrings;
-        private System.Windows.Forms.CheckBox chkBackup;
         private System.Windows.Forms.Button btnMod;
+        public System.Windows.Forms.CheckBox chkBackup;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 

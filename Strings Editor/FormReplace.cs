@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -31,6 +32,14 @@ namespace Strings_Editor
 
         private void btnReplace_Click(object sender, EventArgs e)
         {
+            // Backup
+            if (main.chkBackup.Checked && main.firstReplace)
+            {
+                File.WriteAllBytes(
+                    Path.GetDirectoryName(main.filePath) + "/" + Path.GetFileNameWithoutExtension(main.filePath) +
+                    "_backup" + Path.GetExtension(main.filePath), main.assemblyBytes);
+            }
+
             // Check length
             if (txtToReplace.Text.Length < txtInputText.Text.Length)
             {
