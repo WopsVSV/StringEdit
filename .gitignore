@@ -288,4 +288,7 @@ __pycache__/
 *.xsd.cs
 
 # Old project
-Strings_Editor/*
+.Strings_Editor/
+Strings_Editor/
+Strings Editor/
+.Strings Editor
