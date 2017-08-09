@@ -1,2 +1,2 @@
 # StrinEdit
-An app for editing existing strings in executable files.
+A program for editing existing strings in executable files.
