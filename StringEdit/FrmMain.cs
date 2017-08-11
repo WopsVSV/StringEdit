@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StringEdit
@@ -15,6 +16,10 @@ namespace StringEdit
     /// </summary>
     public partial class FrmMain : Form
     {
+        // Objects
+        private Extractor extractor;
+        private byte[] fileBytes;
+
         // To be replace on final release
         private const int BUILD_NO = 27;
 
@@ -40,28 +45,6 @@ namespace StringEdit
         }
 
         /// <summary>
-        /// Remove the panel covers
-        /// </summary>
-        private void RemoveCovers()
-        {
-            pnlCoverEdit.Visible = false;
-            pnlCoverBuild.Visible = false;
-        }
-
-        /// <summary>
-        /// DEBUG ONLY
-        /// Increments the version in the build_version.txt
-        /// </summary>
-        private static string BuildIncrement()
-        {
-            int version = int.Parse(File.ReadAllText("build_version.txt").Replace("\r", string.Empty));
-            version++;
-            File.WriteAllText("build_version.txt", version.ToString());
-
-            return version.ToString();
-        }
-
-        /// <summary>
         /// Checks the dragged item
         /// </summary>
         private void tabLoad_DragEnter(object sender, DragEventArgs e)
@@ -78,15 +61,64 @@ namespace StringEdit
         /// <summary>
         /// Act with the dropped file
         /// </summary>
-        private void tabLoad_DragDrop(object sender, DragEventArgs e)
+        private async void tabLoad_DragDrop(object sender, DragEventArgs e)
         {
+            // Clear list
+            lstStrings.Items.Clear();
+
             // Fill the progress bar
             OnLoadGuiUpdate();
 
-            // We know it's a single file because of the DragEnter event
-            string filePath = e.GetDragItems()[0];
+            await Task.Run(() =>
+            {
+                // Check if settings are valid
+                if (!txtMinSize.Text.All(char.IsDigit) && !string.IsNullOrEmpty(txtMinSize.Text))
+                {
+                    MessageBox.Show("Invalid string size!");
+                    return;
+                }
 
-            RemoveCovers();           
+                // We know it's a single file because of the DragEnter event
+                string filePath = e.GetDragItems()[0];
+
+                fileBytes = File.ReadAllBytes(filePath);
+
+                extractor = new Extractor(filePath);
+                extractor.Extract(GetArguments());
+
+                foreach (var item in extractor.ExtractedStrings)
+                {
+                    StringParser.ItemValues values = StringParser.GetValues(fileBytes, item);
+
+                    AddItem(item, values.Encoding, values.Entropy, values.Occurrences);
+                }
+
+                // Remove panel covers
+                InvokeUI(() =>
+                {
+                    pnlCoverEdit.Visible = false;
+                    pnlCoverBuild.Visible = false;
+                });
+            });
+
+           
+        }
+
+        /// <summary>
+        /// Invokes an action on the UI thread
+        /// </summary>
+        private void InvokeUI(Action a)
+        {
+            this.BeginInvoke(new MethodInvoker(a));
+        }
+
+        public void AddItem(string str, string encoding, string entropy, string occurrences)
+        {
+            InvokeUI(() =>
+            {
+                lstStrings.Items.Add(lstStrings.Items.Count.ToString());
+                lstStrings.Items[lstStrings.Items.Count - 1].SubItems.AddRange(new[] { str, encoding, str.Length.ToString(), entropy, occurrences });
+            });
         }
 
         /// <summary>
@@ -119,25 +151,74 @@ namespace StringEdit
         /// <summary>
         /// Links the user to the website
         /// </summary>
-        private void btnToWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://sorin.tech");
-        }
+        private void btnToWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => System.Diagnostics.Process.Start("https://sorin.tech");
 
         /// <summary>
         /// Links the user to the strings dl page
         /// </summary>
-        private void btnToStringsWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://docs.microsoft.com/en-us/sysinternals/downloads/strings");
-        }
+        private void btnToStringsWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => System.Diagnostics.Process.Start("https://docs.microsoft.com/en-us/sysinternals/downloads/strings");
 
         /// <summary>
         /// Links the user to the github project
         /// </summary>
-        private void btnToGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnToGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => System.Diagnostics.Process.Start("https://github.com/WopsVSV/StringEdit");
+
+        /// <summary>
+        /// Cancels the width resize
+        /// </summary>
+        private void lstStrings_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/WopsVSV/StringEdit");
+            e.Cancel = true;
+            e.NewWidth = lstStrings.Columns[e.ColumnIndex].Width;
+        }
+
+        /// <summary>
+        /// Determines additional arguments based on settings
+        /// </summary>
+        private string GetArguments()
+        {
+            string retVal = string.Empty;
+
+            if (chkEncASCII.Checked)
+                retVal += "-a";
+            if (chkEncUTF16.Checked)
+                retVal += "-u";
+
+            int minSize = int.Parse(txtMinSize.Text);
+            if (minSize > 3)
+                retVal += " -n " + minSize;
+
+            int indexOfStrings = Finder.FindBytes(fileBytes, Encoding.ASCII.GetBytes("#Strings"));
+            if (indexOfStrings != 0)
+            {
+                retVal += " -f " + indexOfStrings;
+            }
+
+            return retVal;
+        }
+
+        /// <summary>
+        /// Changes the global flag accordingly
+        /// </summary>
+        private void chkSmartFilters_CheckedChanged(object sender, EventArgs e)
+        {
+            Globals.UseSmartFilters = chkSmartFilters.Checked;
+        }
+
+        /// <summary>
+        /// Changes the global flag accordingly
+        /// </summary>
+        private void chkExtremeFilters_CheckedChanged(object sender, EventArgs e)
+        {
+            Globals.UseExtremeFilters = chkExtremeFilters.Checked;
+        }
+
+        /// <summary>
+        /// Changes the global flag accordingly
+        /// </summary>
+        private void chkRemoveDuplicates_CheckedChanged(object sender, EventArgs e)
+        {
+            Globals.RemoveDuplicates = chkRemoveDuplicates.Checked;
         }
     }
 }
