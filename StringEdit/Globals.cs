@@ -14,5 +14,7 @@ namespace StringEdit
         public static bool UseExtremeFilters = false;
 
         public static bool RemoveDuplicates = true;
+
+        public static bool CreateBackup = true;
     }
 }

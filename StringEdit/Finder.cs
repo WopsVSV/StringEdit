@@ -82,10 +82,8 @@ namespace StringEdit
             return index;
         }
 
-        private static int replacesDone = 0;
         public static Result ReplaceBytes(byte[] src, byte[] search, byte[] repl)
         {
-            replacesDone = 0;
             byte[] dst = null;
             byte[] temp = null;
             int index = FindBytes(src, search);
@@ -109,8 +107,6 @@ namespace StringEdit
                     dst,
                     index + repl.Length,
                     temp.Length - (index + search.Length));
-
-                replacesDone++;
 
                 index = FindBytes(dst, search);
             }

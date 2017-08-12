@@ -42,6 +42,9 @@ namespace StringEdit
             // Hides the Build & Edit tabs
             pnlCoverBuild.Size = new Size(tabBuild.Width, tabBuild.Height);
             pnlCoverEdit.Size = new Size(tabBuild.Width, tabBuild.Height);
+
+            // Adjusts listview
+            Extensions.AdjustViewColumns(lstStrings);
         }
 
         /// <summary>
@@ -80,6 +83,12 @@ namespace StringEdit
 
                 // We know it's a single file because of the DragEnter event
                 string filePath = e.GetDragItems()[0];
+
+                // Copy if necessary
+                if (Globals.CreateBackup)
+                    File.Copy(filePath,
+                        Path.GetDirectoryName(filePath) + "/" + Path.GetFileNameWithoutExtension(filePath) +
+                        "_original" + Path.GetExtension(filePath), true);
 
                 fileBytes = File.ReadAllBytes(filePath);
 
@@ -219,6 +228,22 @@ namespace StringEdit
         private void chkRemoveDuplicates_CheckedChanged(object sender, EventArgs e)
         {
             Globals.RemoveDuplicates = chkRemoveDuplicates.Checked;
+        }
+
+        /// <summary>
+        /// Changes the global flag accordingly
+        /// </summary>
+        private void chkBackup_CheckedChanged(object sender, EventArgs e)
+        {
+            Globals.CreateBackup = chkBackup.Checked;
+        }
+
+        /// <summary>
+        /// Opens the basic edit form
+        /// </summary>
+        private void basicEditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmBasicEdit(lstStrings.SelectedItems[0].SubItems[1].Text, lstStrings.SelectedItems[0].Index).Show();
         }
     }
 }

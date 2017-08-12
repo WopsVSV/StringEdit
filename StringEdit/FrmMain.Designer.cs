@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.strafeTabControl1 = new StrafeTheme.StrafeTabControl();
             this.tabLoad = new System.Windows.Forms.TabPage();
@@ -38,6 +39,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.txtRegex = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.strafeHeader9 = new StrafeTheme.StrafeHeader();
+            this.chkBackup = new StrafeTheme.StrafeOnOffBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.strafeHeader8 = new StrafeTheme.StrafeHeader();
+            this.chkRemoveDuplicates = new StrafeTheme.StrafeOnOffBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.strafeHeader7 = new StrafeTheme.StrafeHeader();
             this.chkExtremeFilters = new StrafeTheme.StrafeOnOffBox();
             this.label17 = new System.Windows.Forms.Label();
             this.strafeHeader6 = new StrafeTheme.StrafeHeader();
@@ -83,9 +94,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnToWebsite = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
-            this.strafeHeader7 = new StrafeTheme.StrafeHeader();
-            this.label18 = new System.Windows.Forms.Label();
-            this.chkRemoveDuplicates = new StrafeTheme.StrafeOnOffBox();
+            this.cmsList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.basicEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advancedEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.strafeTabControl1.SuspendLayout();
             this.tabLoad.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -93,6 +106,7 @@
             this.tabEdit.SuspendLayout();
             this.tabBuild.SuspendLayout();
             this.tabAbout.SuspendLayout();
+            this.cmsList.SuspendLayout();
             this.SuspendLayout();
             // 
             // strafeTabControl1
@@ -111,7 +125,7 @@
             this.strafeTabControl1.Name = "strafeTabControl1";
             this.strafeTabControl1.OverIndex = -1;
             this.strafeTabControl1.SelectedIndex = 0;
-            this.strafeTabControl1.Size = new System.Drawing.Size(804, 475);
+            this.strafeTabControl1.Size = new System.Drawing.Size(807, 546);
             this.strafeTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.strafeTabControl1.TabIndex = 0;
             this.strafeTabControl1.Tag = "";
@@ -131,7 +145,7 @@
             this.tabLoad.Location = new System.Drawing.Point(184, 4);
             this.tabLoad.Name = "tabLoad";
             this.tabLoad.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLoad.Size = new System.Drawing.Size(616, 467);
+            this.tabLoad.Size = new System.Drawing.Size(619, 538);
             this.tabLoad.TabIndex = 0;
             this.tabLoad.Tag = "#C95858";
             this.tabLoad.Text = "Load";
@@ -142,7 +156,7 @@
             // 
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext.EnabledCalc = true;
-            this.btnNext.Location = new System.Drawing.Point(258, 277);
+            this.btnNext.Location = new System.Drawing.Point(259, 277);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(88, 27);
             this.btnNext.TabIndex = 6;
@@ -152,7 +166,7 @@
             // 
             // pbProgress
             // 
-            this.pbProgress.Location = new System.Drawing.Point(263, 184);
+            this.pbProgress.Location = new System.Drawing.Point(264, 184);
             this.pbProgress.Max = 100F;
             this.pbProgress.Min = 0F;
             this.pbProgress.Name = "pbProgress";
@@ -165,7 +179,7 @@
             // txtBuild
             // 
             this.txtBuild.AutoSize = true;
-            this.txtBuild.Location = new System.Drawing.Point(6, 447);
+            this.txtBuild.Location = new System.Drawing.Point(6, 518);
             this.txtBuild.Name = "txtBuild";
             this.txtBuild.Size = new System.Drawing.Size(34, 15);
             this.txtBuild.TabIndex = 3;
@@ -173,7 +187,7 @@
             // 
             // strafeSeparator1
             // 
-            this.strafeSeparator1.Location = new System.Drawing.Point(141, 66);
+            this.strafeSeparator1.Location = new System.Drawing.Point(142, 66);
             this.strafeSeparator1.Name = "strafeSeparator1";
             this.strafeSeparator1.Size = new System.Drawing.Size(337, 6);
             this.strafeSeparator1.TabIndex = 2;
@@ -182,7 +196,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(184, 86);
+            this.label2.Location = new System.Drawing.Point(185, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(240, 15);
             this.label2.TabIndex = 1;
@@ -191,7 +205,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(143, 18);
+            this.label1.Location = new System.Drawing.Point(144, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(340, 30);
             this.label1.TabIndex = 0;
@@ -201,6 +215,13 @@
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.White;
+            this.tabSettings.Controls.Add(this.txtRegex);
+            this.tabSettings.Controls.Add(this.label21);
+            this.tabSettings.Controls.Add(this.label20);
+            this.tabSettings.Controls.Add(this.strafeHeader9);
+            this.tabSettings.Controls.Add(this.chkBackup);
+            this.tabSettings.Controls.Add(this.label19);
+            this.tabSettings.Controls.Add(this.strafeHeader8);
             this.tabSettings.Controls.Add(this.chkRemoveDuplicates);
             this.tabSettings.Controls.Add(this.label18);
             this.tabSettings.Controls.Add(this.strafeHeader7);
@@ -224,17 +245,112 @@
             this.tabSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(119)))), ((int)(((byte)(141)))));
             this.tabSettings.Location = new System.Drawing.Point(184, 4);
             this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Size = new System.Drawing.Size(616, 467);
+            this.tabSettings.Size = new System.Drawing.Size(619, 538);
             this.tabSettings.TabIndex = 3;
             this.tabSettings.Tag = "#DFDF20";
             this.tabSettings.Text = "Settings";
+            // 
+            // txtRegex
+            // 
+            this.txtRegex.Enabled = false;
+            this.txtRegex.Location = new System.Drawing.Point(391, 492);
+            this.txtRegex.MaxLength = 2;
+            this.txtRegex.Name = "txtRegex";
+            this.txtRegex.Size = new System.Drawing.Size(111, 23);
+            this.txtRegex.TabIndex = 28;
+            this.txtRegex.Text = "Coming soon...";
+            this.txtRegex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(348, 496);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(41, 15);
+            this.label21.TabIndex = 27;
+            this.label21.Text = "Regex:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(348, 472);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(214, 15);
+            this.label20.TabIndex = 26;
+            this.label20.Text = "Puts the string through regex matching";
+            // 
+            // strafeHeader9
+            // 
+            this.strafeHeader9.Location = new System.Drawing.Point(347, 440);
+            this.strafeHeader9.Name = "strafeHeader9";
+            this.strafeHeader9.Size = new System.Drawing.Size(177, 32);
+            this.strafeHeader9.TabIndex = 25;
+            this.strafeHeader9.Text = "Regex filter";
+            // 
+            // chkBackup
+            // 
+            this.chkBackup.Checked = true;
+            this.chkBackup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkBackup.EnabledCalc = true;
+            this.chkBackup.Location = new System.Drawing.Point(28, 491);
+            this.chkBackup.Name = "chkBackup";
+            this.chkBackup.Size = new System.Drawing.Size(38, 23);
+            this.chkBackup.TabIndex = 24;
+            this.chkBackup.Text = "strafeOnOffBox1";
+            this.chkBackup.CheckedChanged += new StrafeTheme.Base.CheckControl.CheckedChangedEventHandler(this.chkBackup_CheckedChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(26, 471);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(180, 15);
+            this.label19.TabIndex = 23;
+            this.label19.Text = "Creates a copy of the executable.";
+            // 
+            // strafeHeader8
+            // 
+            this.strafeHeader8.Location = new System.Drawing.Point(24, 440);
+            this.strafeHeader8.Name = "strafeHeader8";
+            this.strafeHeader8.Size = new System.Drawing.Size(177, 32);
+            this.strafeHeader8.TabIndex = 22;
+            this.strafeHeader8.Text = "Backup";
+            // 
+            // chkRemoveDuplicates
+            // 
+            this.chkRemoveDuplicates.Checked = true;
+            this.chkRemoveDuplicates.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkRemoveDuplicates.EnabledCalc = true;
+            this.chkRemoveDuplicates.Location = new System.Drawing.Point(28, 357);
+            this.chkRemoveDuplicates.Name = "chkRemoveDuplicates";
+            this.chkRemoveDuplicates.Size = new System.Drawing.Size(38, 23);
+            this.chkRemoveDuplicates.TabIndex = 21;
+            this.chkRemoveDuplicates.Text = "strafeOnOffBox1";
+            this.chkRemoveDuplicates.CheckedChanged += new StrafeTheme.Base.CheckControl.CheckedChangedEventHandler(this.chkRemoveDuplicates_CheckedChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(26, 338);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(235, 15);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "Removes duplicates. Will increase run time.";
+            // 
+            // strafeHeader7
+            // 
+            this.strafeHeader7.Location = new System.Drawing.Point(24, 306);
+            this.strafeHeader7.Name = "strafeHeader7";
+            this.strafeHeader7.Size = new System.Drawing.Size(177, 32);
+            this.strafeHeader7.TabIndex = 19;
+            this.strafeHeader7.Text = "Remove duplicates";
             // 
             // chkExtremeFilters
             // 
             this.chkExtremeFilters.Checked = false;
             this.chkExtremeFilters.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkExtremeFilters.EnabledCalc = true;
-            this.chkExtremeFilters.Location = new System.Drawing.Point(353, 375);
+            this.chkExtremeFilters.Location = new System.Drawing.Point(353, 357);
             this.chkExtremeFilters.Name = "chkExtremeFilters";
             this.chkExtremeFilters.Size = new System.Drawing.Size(38, 23);
             this.chkExtremeFilters.TabIndex = 18;
@@ -244,7 +360,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(348, 357);
+            this.label17.Location = new System.Drawing.Point(348, 338);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(248, 15);
             this.label17.TabIndex = 17;
@@ -252,7 +368,7 @@
             // 
             // strafeHeader6
             // 
-            this.strafeHeader6.Location = new System.Drawing.Point(347, 325);
+            this.strafeHeader6.Location = new System.Drawing.Point(347, 306);
             this.strafeHeader6.Name = "strafeHeader6";
             this.strafeHeader6.Size = new System.Drawing.Size(177, 32);
             this.strafeHeader6.TabIndex = 16;
@@ -263,7 +379,7 @@
             this.chkSmartFilters.Checked = true;
             this.chkSmartFilters.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkSmartFilters.EnabledCalc = true;
-            this.chkSmartFilters.Location = new System.Drawing.Point(353, 231);
+            this.chkSmartFilters.Location = new System.Drawing.Point(353, 225);
             this.chkSmartFilters.Name = "chkSmartFilters";
             this.chkSmartFilters.Size = new System.Drawing.Size(38, 23);
             this.chkSmartFilters.TabIndex = 15;
@@ -273,7 +389,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(348, 209);
+            this.label16.Location = new System.Drawing.Point(348, 203);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(244, 15);
             this.label16.TabIndex = 14;
@@ -281,7 +397,7 @@
             // 
             // strafeHeader5
             // 
-            this.strafeHeader5.Location = new System.Drawing.Point(347, 177);
+            this.strafeHeader5.Location = new System.Drawing.Point(347, 171);
             this.strafeHeader5.Name = "strafeHeader5";
             this.strafeHeader5.Size = new System.Drawing.Size(177, 32);
             this.strafeHeader5.TabIndex = 13;
@@ -292,7 +408,7 @@
             this.chkIgnore.Checked = true;
             this.chkIgnore.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkIgnore.EnabledCalc = true;
-            this.chkIgnore.Location = new System.Drawing.Point(29, 232);
+            this.chkIgnore.Location = new System.Drawing.Point(29, 226);
             this.chkIgnore.Name = "chkIgnore";
             this.chkIgnore.Size = new System.Drawing.Size(38, 23);
             this.chkIgnore.TabIndex = 12;
@@ -301,7 +417,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(25, 210);
+            this.label15.Location = new System.Drawing.Point(25, 204);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(270, 15);
             this.label15.TabIndex = 11;
@@ -309,7 +425,7 @@
             // 
             // strafeHeader4
             // 
-            this.strafeHeader4.Location = new System.Drawing.Point(24, 177);
+            this.strafeHeader4.Location = new System.Drawing.Point(24, 171);
             this.strafeHeader4.Name = "strafeHeader4";
             this.strafeHeader4.Size = new System.Drawing.Size(177, 32);
             this.strafeHeader4.TabIndex = 10;
@@ -424,7 +540,7 @@
             this.tabEdit.Location = new System.Drawing.Point(184, 4);
             this.tabEdit.Name = "tabEdit";
             this.tabEdit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEdit.Size = new System.Drawing.Size(616, 467);
+            this.tabEdit.Size = new System.Drawing.Size(619, 538);
             this.tabEdit.TabIndex = 1;
             this.tabEdit.Tag = "#5050FF";
             this.tabEdit.Text = "Edit";
@@ -463,10 +579,11 @@
             this.colLength,
             this.colEntropy,
             this.colOccurences});
+            this.lstStrings.ContextMenuStrip = this.cmsList;
             this.lstStrings.FullRowSelect = true;
             this.lstStrings.Location = new System.Drawing.Point(31, 87);
             this.lstStrings.Name = "lstStrings";
-            this.lstStrings.Size = new System.Drawing.Size(563, 360);
+            this.lstStrings.Size = new System.Drawing.Size(563, 426);
             this.lstStrings.TabIndex = 2;
             this.lstStrings.UseCompatibleStateImageBehavior = false;
             this.lstStrings.View = System.Windows.Forms.View.Details;
@@ -475,7 +592,7 @@
             // colNumber
             // 
             this.colNumber.Text = "#";
-            this.colNumber.Width = 44;
+            this.colNumber.Width = 43;
             // 
             // colString
             // 
@@ -519,7 +636,7 @@
             this.tabBuild.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(119)))), ((int)(((byte)(141)))));
             this.tabBuild.Location = new System.Drawing.Point(184, 4);
             this.tabBuild.Name = "tabBuild";
-            this.tabBuild.Size = new System.Drawing.Size(616, 467);
+            this.tabBuild.Size = new System.Drawing.Size(619, 538);
             this.tabBuild.TabIndex = 2;
             this.tabBuild.Tag = "#30DF30";
             this.tabBuild.Text = "Build";
@@ -558,7 +675,7 @@
             this.tabAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(119)))), ((int)(((byte)(141)))));
             this.tabAbout.Location = new System.Drawing.Point(184, 4);
             this.tabAbout.Name = "tabAbout";
-            this.tabAbout.Size = new System.Drawing.Size(616, 467);
+            this.tabAbout.Size = new System.Drawing.Size(619, 538);
             this.tabAbout.TabIndex = 4;
             this.tabAbout.Tag = "#FFFFFF";
             this.tabAbout.Text = "About";
@@ -659,40 +776,45 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Developed by Sorin Vijoaica (Wops)";
             // 
-            // strafeHeader7
+            // cmsList
             // 
-            this.strafeHeader7.Location = new System.Drawing.Point(24, 325);
-            this.strafeHeader7.Name = "strafeHeader7";
-            this.strafeHeader7.Size = new System.Drawing.Size(177, 32);
-            this.strafeHeader7.TabIndex = 19;
-            this.strafeHeader7.Text = "Remove duplicates";
+            this.cmsList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.basicEditToolStripMenuItem,
+            this.advancedEditToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.cancelToolStripMenuItem});
+            this.cmsList.Name = "cmsList";
+            this.cmsList.Size = new System.Drawing.Size(151, 76);
             // 
-            // label18
+            // basicEditToolStripMenuItem
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(26, 357);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(235, 15);
-            this.label18.TabIndex = 20;
-            this.label18.Text = "Removes duplicates. Will increase run time.";
+            this.basicEditToolStripMenuItem.Name = "basicEditToolStripMenuItem";
+            this.basicEditToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.basicEditToolStripMenuItem.Text = "Basic edit";
+            this.basicEditToolStripMenuItem.Click += new System.EventHandler(this.basicEditToolStripMenuItem_Click);
             // 
-            // chkRemoveDuplicates
+            // advancedEditToolStripMenuItem
             // 
-            this.chkRemoveDuplicates.Checked = true;
-            this.chkRemoveDuplicates.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkRemoveDuplicates.EnabledCalc = true;
-            this.chkRemoveDuplicates.Location = new System.Drawing.Point(28, 376);
-            this.chkRemoveDuplicates.Name = "chkRemoveDuplicates";
-            this.chkRemoveDuplicates.Size = new System.Drawing.Size(38, 23);
-            this.chkRemoveDuplicates.TabIndex = 21;
-            this.chkRemoveDuplicates.Text = "strafeOnOffBox1";
-            this.chkRemoveDuplicates.CheckedChanged += new StrafeTheme.Base.CheckControl.CheckedChangedEventHandler(this.chkRemoveDuplicates_CheckedChanged);
+            this.advancedEditToolStripMenuItem.Name = "advancedEditToolStripMenuItem";
+            this.advancedEditToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.advancedEditToolStripMenuItem.Text = "Advanced edit";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
+            // 
+            // cancelToolStripMenuItem
+            // 
+            this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.cancelToolStripMenuItem.Text = "Cancel";
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 475);
+            this.ClientSize = new System.Drawing.Size(807, 546);
             this.Controls.Add(this.strafeTabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -712,6 +834,7 @@
             this.tabBuild.PerformLayout();
             this.tabAbout.ResumeLayout(false);
             this.tabAbout.PerformLayout();
+            this.cmsList.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -775,6 +898,18 @@
         private StrafeTheme.StrafeOnOffBox chkRemoveDuplicates;
         private System.Windows.Forms.Label label18;
         private StrafeTheme.StrafeHeader strafeHeader7;
+        private StrafeTheme.StrafeOnOffBox chkBackup;
+        private System.Windows.Forms.Label label19;
+        private StrafeTheme.StrafeHeader strafeHeader8;
+        private System.Windows.Forms.TextBox txtRegex;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private StrafeTheme.StrafeHeader strafeHeader9;
+        private System.Windows.Forms.ContextMenuStrip cmsList;
+        private System.Windows.Forms.ToolStripMenuItem basicEditToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem advancedEditToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem cancelToolStripMenuItem;
     }
 }
 

@@ -56,5 +56,54 @@ namespace StringEdit
             }
         }
 
+        /// <summary>
+        /// Adjusts the list view columns
+        /// </summary>
+        public static void AdjustViewColumns(ListView view)
+        {
+            int w = view.Size.Width - SystemInformation.VerticalScrollBarWidth;
+            // NOTE: can't use ClientSize.Width if vertical scrollbar is already shown, wing it
+            switch (view.BorderStyle)
+            {
+                case BorderStyle.Fixed3D: w -= 4; break;
+                case BorderStyle.FixedSingle: w -= 2; break;
+            }
+            for (int ix = 0; ix < view.Columns.Count; ++ix)
+            {
+                if (view.Columns[ix].Width < w) w -= view.Columns[ix].Width;
+                else
+                {
+                    view.Columns[ix].Width = w;
+                    // Hide columns that can't fit
+                    for (int jx = ix + 1; jx < view.Columns.Count; ++jx)
+                        view.Columns[jx].Width = 0;
+                    return;
+                }
+            }
+            // Widen last column to fill view
+            view.Columns[view.Columns.Count - 1].Width += w;
+        }
+
+        #region Move borderless form
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        public static void BorderlessForm_MouseDown(Form frm, object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(frm.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        #endregion
+
     }
 }
