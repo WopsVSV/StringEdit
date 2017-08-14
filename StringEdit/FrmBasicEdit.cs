@@ -87,6 +87,7 @@ namespace StringEdit
                 if (occurrences - numberOfReplaces <= 0)
                 {
                     main.lstStrings.Items[listIndex].SubItems[1].Text = txtNewString.Text;
+                    main.lstStrings.Items[listIndex].SubItems[4].Text = StringParser.ShannonEntropy(txtNewString.Text).ToString("F");
                 }
                 else
                 {
