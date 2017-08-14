@@ -47,6 +47,9 @@
       <HintPath>..\..\..\StrafeTheme\StrafeTheme\bin\Debug\StrafeTheme.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StringExtract.Library">
+      <HintPath>..\..\StringExtract\StringExtract\StringExtract.Library\bin\Debug\StringExtract.Library.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,6 +66,12 @@
     <Compile Include="ExtremeFilters.cs" />
     <Compile Include="FilterHandler.cs" />
     <Compile Include="Finder.cs" />
+    <Compile Include="FrmAdvancedEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAdvancedEdit.Designer.cs">
+      <DependentUpon>FrmAdvancedEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmBasicEdit.cs">
       <SubType>Form</SubType>
     </Compile>

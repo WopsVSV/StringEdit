@@ -100,7 +100,7 @@ namespace StringEdit
                 fileBytes = File.ReadAllBytes(filePath);
 
                 extractor = new Extractor(filePath);
-                extractor.Extract(GetArguments());
+                extractor.Extract(3);
 
                 foreach (var item in extractor.ExtractedStrings)
                 {
