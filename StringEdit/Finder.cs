@@ -7,16 +7,6 @@ namespace StringEdit
 {
     public static class Finder
     {
-        public class Result
-        {
-            public bool Worked { get; set; }
-            public byte[] Bytes { get; set; }
-            public Result(bool w, byte[] b)
-            {
-                Worked = w;
-                Bytes = b;
-            }
-        }
 
         /// <summary>
         /// Counts the number of occurrences of bytes found
@@ -82,42 +72,7 @@ namespace StringEdit
             return index;
         }
 
-        public static Result ReplaceBytes(byte[] src, byte[] search, byte[] repl)
-        {
-            byte[] dst = null;
-            byte[] temp = null;
-            int index = FindBytes(src, search);
-            while (index >= 0)
-            {
-                if (temp == null)
-                    temp = src;
-                else
-                    temp = dst;
-
-                dst = new byte[temp.Length - search.Length + repl.Length];
-
-                // before found array
-                Buffer.BlockCopy(temp, 0, dst, 0, index);
-                // repl copy
-                Buffer.BlockCopy(repl, 0, dst, index, repl.Length);
-                // rest of src array
-                Buffer.BlockCopy(
-                    temp,
-                    index + search.Length,
-                    dst,
-                    index + repl.Length,
-                    temp.Length - (index + search.Length));
-
-                index = FindBytes(dst, search);
-            }
-
-            if (dst == null)
-            {
-                return new Result(false, new byte[0]);
-            }
-
-            return new Result(true, dst);
-        }
+     
 
     }
 }

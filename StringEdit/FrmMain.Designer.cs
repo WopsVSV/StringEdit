@@ -79,10 +79,21 @@
             this.colLength = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEntropy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colOccurences = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cmsList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.basicEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advancedEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlCoverEdit = new System.Windows.Forms.Panel();
             this.tabBuild = new System.Windows.Forms.TabPage();
-            this.pnlCoverBuild = new System.Windows.Forms.Panel();
+            this.strafeSeparator3 = new StrafeTheme.StrafeSeparator();
+            this.label22 = new System.Windows.Forms.Label();
+            this.strafeHeader10 = new StrafeTheme.StrafeHeader();
+            this.btnCustomPath = new StrafeTheme.StrafeButton();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtCustomPath = new System.Windows.Forms.TextBox();
+            this.btnBuild = new StrafeTheme.StrafeButton();
+            this.pnlCoverBuild = new System.Windows.Forms.Panel();
             this.tabAbout = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.btnToGithub = new System.Windows.Forms.LinkLabel();
@@ -94,19 +105,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnToWebsite = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
-            this.cmsList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.basicEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advancedEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnFind = new StrafeTheme.StrafeButton();
             this.strafeTabControl1.SuspendLayout();
             this.tabLoad.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabEdit.SuspendLayout();
+            this.cmsList.SuspendLayout();
             this.tabBuild.SuspendLayout();
             this.tabAbout.SuspendLayout();
-            this.cmsList.SuspendLayout();
             this.SuspendLayout();
             // 
             // strafeTabControl1
@@ -530,6 +538,8 @@
             // tabEdit
             // 
             this.tabEdit.BackColor = System.Drawing.Color.White;
+            this.tabEdit.Controls.Add(this.btnFind);
+            this.tabEdit.Controls.Add(this.txtSearch);
             this.tabEdit.Controls.Add(this.strafeSeparator2);
             this.tabEdit.Controls.Add(this.label11);
             this.tabEdit.Controls.Add(this.strafeHeader1);
@@ -619,6 +629,40 @@
             this.colOccurences.Text = "Occurrences";
             this.colOccurences.Width = 87;
             // 
+            // cmsList
+            // 
+            this.cmsList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.basicEditToolStripMenuItem,
+            this.advancedEditToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.cancelToolStripMenuItem});
+            this.cmsList.Name = "cmsList";
+            this.cmsList.Size = new System.Drawing.Size(151, 76);
+            // 
+            // basicEditToolStripMenuItem
+            // 
+            this.basicEditToolStripMenuItem.Name = "basicEditToolStripMenuItem";
+            this.basicEditToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.basicEditToolStripMenuItem.Text = "Basic edit";
+            this.basicEditToolStripMenuItem.Click += new System.EventHandler(this.basicEditToolStripMenuItem_Click);
+            // 
+            // advancedEditToolStripMenuItem
+            // 
+            this.advancedEditToolStripMenuItem.Name = "advancedEditToolStripMenuItem";
+            this.advancedEditToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.advancedEditToolStripMenuItem.Text = "Advanced edit";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
+            // 
+            // cancelToolStripMenuItem
+            // 
+            this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.cancelToolStripMenuItem.Text = "Cancel";
+            // 
             // pnlCoverEdit
             // 
             this.pnlCoverEdit.Location = new System.Drawing.Point(3, 3);
@@ -630,8 +674,14 @@
             // tabBuild
             // 
             this.tabBuild.BackColor = System.Drawing.Color.White;
-            this.tabBuild.Controls.Add(this.pnlCoverBuild);
+            this.tabBuild.Controls.Add(this.strafeSeparator3);
+            this.tabBuild.Controls.Add(this.label22);
+            this.tabBuild.Controls.Add(this.strafeHeader10);
+            this.tabBuild.Controls.Add(this.btnCustomPath);
             this.tabBuild.Controls.Add(this.label3);
+            this.tabBuild.Controls.Add(this.txtCustomPath);
+            this.tabBuild.Controls.Add(this.btnBuild);
+            this.tabBuild.Controls.Add(this.pnlCoverBuild);
             this.tabBuild.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tabBuild.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(119)))), ((int)(((byte)(141)))));
             this.tabBuild.Location = new System.Drawing.Point(184, 4);
@@ -641,22 +691,77 @@
             this.tabBuild.Tag = "#30DF30";
             this.tabBuild.Text = "Build";
             // 
-            // pnlCoverBuild
+            // strafeSeparator3
             // 
-            this.pnlCoverBuild.Location = new System.Drawing.Point(0, 0);
-            this.pnlCoverBuild.Name = "pnlCoverBuild";
-            this.pnlCoverBuild.Size = new System.Drawing.Size(99, 75);
-            this.pnlCoverBuild.TabIndex = 2;
-            this.pnlCoverBuild.Tag = "Cover";
+            this.strafeSeparator3.Location = new System.Drawing.Point(24, 52);
+            this.strafeSeparator3.Name = "strafeSeparator3";
+            this.strafeSeparator3.Size = new System.Drawing.Size(401, 6);
+            this.strafeSeparator3.TabIndex = 10;
+            this.strafeSeparator3.Text = "strafeSeparator3";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(20, 34);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(369, 15);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "Choose a specific path. If not specified, the original will be overriden.";
+            // 
+            // strafeHeader10
+            // 
+            this.strafeHeader10.Location = new System.Drawing.Point(19, 8);
+            this.strafeHeader10.Name = "strafeHeader10";
+            this.strafeHeader10.Size = new System.Drawing.Size(135, 32);
+            this.strafeHeader10.TabIndex = 8;
+            this.strafeHeader10.Text = "Custom path";
+            // 
+            // btnCustomPath
+            // 
+            this.btnCustomPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCustomPath.Enabled = false;
+            this.btnCustomPath.EnabledCalc = true;
+            this.btnCustomPath.Location = new System.Drawing.Point(395, 61);
+            this.btnCustomPath.Name = "btnCustomPath";
+            this.btnCustomPath.Size = new System.Drawing.Size(30, 23);
+            this.btnCustomPath.TabIndex = 7;
+            this.btnCustomPath.Text = "...";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(291, 191);
+            this.label3.Location = new System.Drawing.Point(21, 64);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Test";
+            this.label3.Size = new System.Drawing.Size(34, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Path:";
+            // 
+            // txtCustomPath
+            // 
+            this.txtCustomPath.Location = new System.Drawing.Point(61, 61);
+            this.txtCustomPath.Name = "txtCustomPath";
+            this.txtCustomPath.ReadOnly = true;
+            this.txtCustomPath.Size = new System.Drawing.Size(328, 23);
+            this.txtCustomPath.TabIndex = 5;
+            // 
+            // btnBuild
+            // 
+            this.btnBuild.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuild.EnabledCalc = true;
+            this.btnBuild.Location = new System.Drawing.Point(24, 99);
+            this.btnBuild.Name = "btnBuild";
+            this.btnBuild.Size = new System.Drawing.Size(75, 23);
+            this.btnBuild.TabIndex = 3;
+            this.btnBuild.Text = "Build";
+            this.btnBuild.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnBuild_Click);
+            // 
+            // pnlCoverBuild
+            // 
+            this.pnlCoverBuild.Location = new System.Drawing.Point(0, 0);
+            this.pnlCoverBuild.Name = "pnlCoverBuild";
+            this.pnlCoverBuild.Size = new System.Drawing.Size(21, 19);
+            this.pnlCoverBuild.TabIndex = 2;
+            this.pnlCoverBuild.Tag = "Cover";
             // 
             // tabAbout
             // 
@@ -776,39 +881,23 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Developed by Sorin Vijoaica (Wops)";
             // 
-            // cmsList
+            // txtSearch
             // 
-            this.cmsList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.basicEditToolStripMenuItem,
-            this.advancedEditToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.cancelToolStripMenuItem});
-            this.cmsList.Name = "cmsList";
-            this.cmsList.Size = new System.Drawing.Size(151, 76);
+            this.txtSearch.Location = new System.Drawing.Point(407, 14);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(122, 23);
+            this.txtSearch.TabIndex = 6;
             // 
-            // basicEditToolStripMenuItem
+            // btnFind
             // 
-            this.basicEditToolStripMenuItem.Name = "basicEditToolStripMenuItem";
-            this.basicEditToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.basicEditToolStripMenuItem.Text = "Basic edit";
-            this.basicEditToolStripMenuItem.Click += new System.EventHandler(this.basicEditToolStripMenuItem_Click);
-            // 
-            // advancedEditToolStripMenuItem
-            // 
-            this.advancedEditToolStripMenuItem.Name = "advancedEditToolStripMenuItem";
-            this.advancedEditToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.advancedEditToolStripMenuItem.Text = "Advanced edit";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
-            // 
-            // cancelToolStripMenuItem
-            // 
-            this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.cancelToolStripMenuItem.Text = "Cancel";
+            this.btnFind.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFind.EnabledCalc = true;
+            this.btnFind.Location = new System.Drawing.Point(535, 14);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(60, 23);
+            this.btnFind.TabIndex = 8;
+            this.btnFind.Text = "Find";
+            this.btnFind.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnFind_Click);
             // 
             // FrmMain
             // 
@@ -830,11 +919,11 @@
             this.panel1.ResumeLayout(false);
             this.tabEdit.ResumeLayout(false);
             this.tabEdit.PerformLayout();
+            this.cmsList.ResumeLayout(false);
             this.tabBuild.ResumeLayout(false);
             this.tabBuild.PerformLayout();
             this.tabAbout.ResumeLayout(false);
             this.tabAbout.PerformLayout();
-            this.cmsList.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -853,7 +942,6 @@
         private System.Windows.Forms.Label txtBuild;
         private StrafeTheme.StrafeSeparator strafeSeparator1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private StrafeTheme.StrafeCircular pbProgress;
         private StrafeTheme.StrafeButton btnNext;
         private System.Windows.Forms.Label label4;
@@ -866,7 +954,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ListView lstStrings;
         private System.Windows.Forms.ColumnHeader colNumber;
         private System.Windows.Forms.ColumnHeader colString;
         private System.Windows.Forms.ColumnHeader colEncoding;
@@ -910,6 +997,16 @@
         private System.Windows.Forms.ToolStripMenuItem advancedEditToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem cancelToolStripMenuItem;
+        public System.Windows.Forms.ListView lstStrings;
+        private StrafeTheme.StrafeButton btnBuild;
+        private StrafeTheme.StrafeButton btnCustomPath;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtCustomPath;
+        private StrafeTheme.StrafeSeparator strafeSeparator3;
+        private System.Windows.Forms.Label label22;
+        private StrafeTheme.StrafeHeader strafeHeader10;
+        private StrafeTheme.StrafeButton btnFind;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
 

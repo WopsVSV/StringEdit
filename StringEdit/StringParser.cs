@@ -39,7 +39,7 @@ namespace StringEdit
                 retVal.Encoding = "ASCII";
             var oldCount = count;
 
-            count += Finder.CountOccurrences(fileBytes, GetUTF16Bytes(input));
+            count += Finder.CountOccurrences(fileBytes, GetUTF16Bytes(input, false));
 
             if (count != oldCount)
             {
@@ -58,7 +58,7 @@ namespace StringEdit
         /// <summary>
         /// Get UTF-16-like bytes
         /// </summary>
-        private static byte[] GetUTF16Bytes(string inputText)
+        public static byte[] GetUTF16Bytes(string inputText, bool spacesAsNull)
         {
             byte[] input = System.Text.Encoding.ASCII.GetBytes(inputText);
             byte[] output = new byte[(input.Length - 1) * 2 + 1];
@@ -66,7 +66,10 @@ namespace StringEdit
             int index = 0;
             foreach (var b in input)
             {
-                output[index] = b;
+                if (spacesAsNull && b == ' ')
+                    output[index] = 0x00;
+                else
+                    output[index] = b;
 
                 if (index != output.Length - 1)
                     output[index + 1] = 0x0;

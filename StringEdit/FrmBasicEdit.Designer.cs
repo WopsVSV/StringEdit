@@ -66,6 +66,7 @@
             this.btnReplace.Size = new System.Drawing.Size(75, 23);
             this.btnReplace.TabIndex = 0;
             this.btnReplace.Text = "Replace one";
+            this.btnReplace.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnReplace_Click);
             // 
             // btnReplaceAll
             // 
@@ -76,6 +77,7 @@
             this.btnReplaceAll.Size = new System.Drawing.Size(75, 23);
             this.btnReplaceAll.TabIndex = 1;
             this.btnReplaceAll.Text = "Replace all";
+            this.btnReplaceAll.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnReplace_Click);
             // 
             // label1
             // 

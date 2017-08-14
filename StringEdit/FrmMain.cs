@@ -17,8 +17,9 @@ namespace StringEdit
     public partial class FrmMain : Form
     {
         // Objects
-        private Extractor extractor;
-        private byte[] fileBytes;
+        public Extractor extractor;
+        public static byte[] fileBytes;
+        private string filePath;
 
         // To be replace on final release
         private const int BUILD_NO = 27;
@@ -42,6 +43,10 @@ namespace StringEdit
             // Hides the Build & Edit tabs
             pnlCoverBuild.Size = new Size(tabBuild.Width, tabBuild.Height);
             pnlCoverEdit.Size = new Size(tabBuild.Width, tabBuild.Height);
+            pnlCoverBuild.Location = new Point(0,0);
+            pnlCoverEdit.Location = new Point(0, 0);
+            pnlCoverBuild.BringToFront();
+            pnlCoverEdit.BringToFront();
 
             // Adjusts listview
             Extensions.AdjustViewColumns(lstStrings);
@@ -83,6 +88,7 @@ namespace StringEdit
 
                 // We know it's a single file because of the DragEnter event
                 string filePath = e.GetDragItems()[0];
+                this.filePath = filePath;
 
                 // Copy if necessary
                 if (Globals.CreateBackup)
@@ -243,7 +249,39 @@ namespace StringEdit
         /// </summary>
         private void basicEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FrmBasicEdit(lstStrings.SelectedItems[0].SubItems[1].Text, lstStrings.SelectedItems[0].Index).Show();
+            new FrmBasicEdit(lstStrings.SelectedItems[0].SubItems[1].Text, lstStrings.SelectedItems[0].Index, lstStrings.SelectedItems[0].SubItems[2].Text).Show();
+        }
+
+        private void btnBuild_Click(object sender, EventArgs e)
+        {
+            File.WriteAllBytes(Path.GetDirectoryName(filePath) + "/" + Path.GetFileNameWithoutExtension(filePath) +
+                               "_build" + Path.GetExtension(filePath), fileBytes);
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            int index = 0;
+            if (lstStrings.SelectedItems.Count > 0)
+                index = lstStrings.SelectedItems[0].Index + 1;
+
+            for (var i = index; i < lstStrings.Items.Count; i++)
+            {
+                ListViewItem item = lstStrings.Items[i];
+
+                if (item.SubItems[1].Text.Contains(txtSearch.Text))
+                {
+                    if (lstStrings.SelectedIndices.Count > 0)
+                        for (int j = 0; j < lstStrings.SelectedIndices.Count; i++)
+                        {
+                            lstStrings.Items[lstStrings.SelectedIndices[j]].Selected = false;
+                        }
+
+                    item.Selected = true;
+                    lstStrings.Select();
+                    lstStrings.EnsureVisible(item.Index);
+                    break;
+                }
+            }
         }
     }
 }
