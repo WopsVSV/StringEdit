@@ -39,10 +39,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabSettings = new System.Windows.Forms.TabPage();
-            this.txtRegex = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.strafeHeader9 = new StrafeTheme.StrafeHeader();
             this.chkBackup = new StrafeTheme.StrafeOnOffBox();
             this.label19 = new System.Windows.Forms.Label();
             this.strafeHeader8 = new StrafeTheme.StrafeHeader();
@@ -69,6 +65,8 @@
             this.chkEncBoth = new StrafeTheme.StrafeRadioButton();
             this.chkEncASCII = new StrafeTheme.StrafeRadioButton();
             this.tabEdit = new System.Windows.Forms.TabPage();
+            this.btnFind = new StrafeTheme.StrafeButton();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.strafeSeparator2 = new StrafeTheme.StrafeSeparator();
             this.label11 = new System.Windows.Forms.Label();
             this.strafeHeader1 = new StrafeTheme.StrafeHeader();
@@ -105,8 +103,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnToWebsite = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnFind = new StrafeTheme.StrafeButton();
+            this.strafeSeparator4 = new StrafeTheme.StrafeSeparator();
+            this.label20 = new System.Windows.Forms.Label();
+            this.strafeHeader9 = new StrafeTheme.StrafeHeader();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtMD5 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtSHA1 = new System.Windows.Forms.TextBox();
+            this.btnReset = new StrafeTheme.StrafeButton();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtSHA256 = new System.Windows.Forms.TextBox();
             this.strafeTabControl1.SuspendLayout();
             this.tabLoad.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -142,6 +148,7 @@
             // 
             this.tabLoad.AllowDrop = true;
             this.tabLoad.BackColor = System.Drawing.Color.White;
+            this.tabLoad.Controls.Add(this.btnReset);
             this.tabLoad.Controls.Add(this.btnNext);
             this.tabLoad.Controls.Add(this.pbProgress);
             this.tabLoad.Controls.Add(this.txtBuild);
@@ -223,10 +230,6 @@
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.White;
-            this.tabSettings.Controls.Add(this.txtRegex);
-            this.tabSettings.Controls.Add(this.label21);
-            this.tabSettings.Controls.Add(this.label20);
-            this.tabSettings.Controls.Add(this.strafeHeader9);
             this.tabSettings.Controls.Add(this.chkBackup);
             this.tabSettings.Controls.Add(this.label19);
             this.tabSettings.Controls.Add(this.strafeHeader8);
@@ -257,43 +260,6 @@
             this.tabSettings.TabIndex = 3;
             this.tabSettings.Tag = "#DFDF20";
             this.tabSettings.Text = "Settings";
-            // 
-            // txtRegex
-            // 
-            this.txtRegex.Enabled = false;
-            this.txtRegex.Location = new System.Drawing.Point(391, 492);
-            this.txtRegex.MaxLength = 2;
-            this.txtRegex.Name = "txtRegex";
-            this.txtRegex.Size = new System.Drawing.Size(111, 23);
-            this.txtRegex.TabIndex = 28;
-            this.txtRegex.Text = "Coming soon...";
-            this.txtRegex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(348, 496);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(41, 15);
-            this.label21.TabIndex = 27;
-            this.label21.Text = "Regex:";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(348, 472);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(214, 15);
-            this.label20.TabIndex = 26;
-            this.label20.Text = "Puts the string through regex matching";
-            // 
-            // strafeHeader9
-            // 
-            this.strafeHeader9.Location = new System.Drawing.Point(347, 440);
-            this.strafeHeader9.Name = "strafeHeader9";
-            this.strafeHeader9.Size = new System.Drawing.Size(177, 32);
-            this.strafeHeader9.TabIndex = 25;
-            this.strafeHeader9.Text = "Regex filter";
             // 
             // chkBackup
             // 
@@ -555,6 +521,24 @@
             this.tabEdit.Tag = "#5050FF";
             this.tabEdit.Text = "Edit";
             // 
+            // btnFind
+            // 
+            this.btnFind.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFind.EnabledCalc = true;
+            this.btnFind.Location = new System.Drawing.Point(535, 14);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(60, 23);
+            this.btnFind.TabIndex = 8;
+            this.btnFind.Text = "Find";
+            this.btnFind.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnFind_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(407, 14);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(122, 23);
+            this.txtSearch.TabIndex = 6;
+            // 
             // strafeSeparator2
             // 
             this.strafeSeparator2.Location = new System.Drawing.Point(31, 72);
@@ -674,6 +658,15 @@
             // tabBuild
             // 
             this.tabBuild.BackColor = System.Drawing.Color.White;
+            this.tabBuild.Controls.Add(this.txtSHA256);
+            this.tabBuild.Controls.Add(this.label24);
+            this.tabBuild.Controls.Add(this.label23);
+            this.tabBuild.Controls.Add(this.txtSHA1);
+            this.tabBuild.Controls.Add(this.strafeSeparator4);
+            this.tabBuild.Controls.Add(this.label20);
+            this.tabBuild.Controls.Add(this.strafeHeader9);
+            this.tabBuild.Controls.Add(this.label21);
+            this.tabBuild.Controls.Add(this.txtMD5);
             this.tabBuild.Controls.Add(this.strafeSeparator3);
             this.tabBuild.Controls.Add(this.label22);
             this.tabBuild.Controls.Add(this.strafeHeader10);
@@ -726,6 +719,7 @@
             this.btnCustomPath.Size = new System.Drawing.Size(30, 23);
             this.btnCustomPath.TabIndex = 7;
             this.btnCustomPath.Text = "...";
+            this.btnCustomPath.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnCustomPath_Click);
             // 
             // label3
             // 
@@ -748,9 +742,9 @@
             // 
             this.btnBuild.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBuild.EnabledCalc = true;
-            this.btnBuild.Location = new System.Drawing.Point(24, 99);
+            this.btnBuild.Location = new System.Drawing.Point(23, 254);
             this.btnBuild.Name = "btnBuild";
-            this.btnBuild.Size = new System.Drawing.Size(75, 23);
+            this.btnBuild.Size = new System.Drawing.Size(100, 30);
             this.btnBuild.TabIndex = 3;
             this.btnBuild.Text = "Build";
             this.btnBuild.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnBuild_Click);
@@ -881,23 +875,93 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Developed by Sorin Vijoaica (Wops)";
             // 
-            // txtSearch
+            // strafeSeparator4
             // 
-            this.txtSearch.Location = new System.Drawing.Point(407, 14);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(122, 23);
-            this.txtSearch.TabIndex = 6;
+            this.strafeSeparator4.Location = new System.Drawing.Point(24, 148);
+            this.strafeSeparator4.Name = "strafeSeparator4";
+            this.strafeSeparator4.Size = new System.Drawing.Size(401, 6);
+            this.strafeSeparator4.TabIndex = 16;
+            this.strafeSeparator4.Text = "strafeSeparator4";
             // 
-            // btnFind
+            // label20
             // 
-            this.btnFind.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFind.EnabledCalc = true;
-            this.btnFind.Location = new System.Drawing.Point(535, 14);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(60, 23);
-            this.btnFind.TabIndex = 8;
-            this.btnFind.Text = "Find";
-            this.btnFind.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnFind_Click);
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(20, 130);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(222, 15);
+            this.label20.TabIndex = 15;
+            this.label20.Text = "The checksums generated after the build";
+            // 
+            // strafeHeader9
+            // 
+            this.strafeHeader9.Location = new System.Drawing.Point(19, 104);
+            this.strafeHeader9.Name = "strafeHeader9";
+            this.strafeHeader9.Size = new System.Drawing.Size(135, 32);
+            this.strafeHeader9.TabIndex = 14;
+            this.strafeHeader9.Text = "Checksums";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(21, 161);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(35, 15);
+            this.label21.TabIndex = 12;
+            this.label21.Text = "MD5:";
+            // 
+            // txtMD5
+            // 
+            this.txtMD5.Location = new System.Drawing.Point(76, 157);
+            this.txtMD5.Name = "txtMD5";
+            this.txtMD5.ReadOnly = true;
+            this.txtMD5.Size = new System.Drawing.Size(348, 23);
+            this.txtMD5.TabIndex = 11;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(21, 190);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(39, 15);
+            this.label23.TabIndex = 18;
+            this.label23.Text = "SHA1:";
+            // 
+            // txtSHA1
+            // 
+            this.txtSHA1.Location = new System.Drawing.Point(76, 186);
+            this.txtSHA1.Name = "txtSHA1";
+            this.txtSHA1.ReadOnly = true;
+            this.txtSHA1.Size = new System.Drawing.Size(348, 23);
+            this.txtSHA1.TabIndex = 17;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.EnabledCalc = true;
+            this.btnReset.Location = new System.Drawing.Point(507, 19);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(88, 27);
+            this.btnReset.TabIndex = 7;
+            this.btnReset.Text = "Reset";
+            this.btnReset.Visible = false;
+            this.btnReset.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnReset_Click);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(21, 218);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(51, 15);
+            this.label24.TabIndex = 19;
+            this.label24.Text = "SHA256:";
+            // 
+            // txtSHA256
+            // 
+            this.txtSHA256.Location = new System.Drawing.Point(76, 214);
+            this.txtSHA256.Name = "txtSHA256";
+            this.txtSHA256.ReadOnly = true;
+            this.txtSHA256.Size = new System.Drawing.Size(348, 23);
+            this.txtSHA256.TabIndex = 20;
             // 
             // FrmMain
             // 
@@ -988,10 +1052,6 @@
         private StrafeTheme.StrafeOnOffBox chkBackup;
         private System.Windows.Forms.Label label19;
         private StrafeTheme.StrafeHeader strafeHeader8;
-        private System.Windows.Forms.TextBox txtRegex;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private StrafeTheme.StrafeHeader strafeHeader9;
         private System.Windows.Forms.ContextMenuStrip cmsList;
         private System.Windows.Forms.ToolStripMenuItem basicEditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advancedEditToolStripMenuItem;
@@ -1007,6 +1067,16 @@
         private StrafeTheme.StrafeHeader strafeHeader10;
         private StrafeTheme.StrafeButton btnFind;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtSHA1;
+        private StrafeTheme.StrafeSeparator strafeSeparator4;
+        private System.Windows.Forms.Label label20;
+        private StrafeTheme.StrafeHeader strafeHeader9;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtMD5;
+        private StrafeTheme.StrafeButton btnReset;
+        private System.Windows.Forms.TextBox txtSHA256;
+        private System.Windows.Forms.Label label24;
     }
 }
 

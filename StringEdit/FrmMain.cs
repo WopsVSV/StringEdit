@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -157,6 +158,7 @@ namespace StringEdit
                 {
                     tmrProgress.Stop();
                     btnNext.Visible = true;
+                    btnReset.Visible = true;
                 }
                 pbProgress.Progress += 1f;
             };
@@ -254,16 +256,57 @@ namespace StringEdit
 
         private void btnBuild_Click(object sender, EventArgs e)
         {
-            File.WriteAllBytes(Path.GetDirectoryName(filePath) + "/" + Path.GetFileNameWithoutExtension(filePath) +
-                               "_build" + Path.GetExtension(filePath), fileBytes);
+            string savePath;
+            if (!string.IsNullOrEmpty(txtCustomPath.Text))
+                savePath = txtCustomPath.Text;
+            else
+                savePath = filePath;
+
+            try
+            {
+                File.WriteAllBytes(savePath, fileBytes);
+
+                // Show checksums
+                using (var md5 = MD5.Create())
+                {
+                    using (var buffer = File.OpenRead(savePath))
+                    {
+                        txtMD5.Text = BitConverter.ToString(md5.ComputeHash(buffer)).Replace("-", string.Empty);
+                    }
+                }
+                using (var sha1 = new SHA1CryptoServiceProvider())
+                {
+                    using (var buffer = File.OpenRead(savePath))
+                    {
+                        txtSHA1.Text = BitConverter.ToString(sha1.ComputeHash(buffer)).Replace("-", string.Empty);
+                    }
+                }
+                using (var sha256 = new SHA256CryptoServiceProvider())
+                {
+                    using (var buffer = File.OpenRead(savePath))
+                    {
+                        txtSHA256.Text = BitConverter.ToString(sha256.ComputeHash(buffer)).Replace("-", string.Empty);
+                    }
+                }
+
+                MessageBox.Show("File successfully built.");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An error has occurred while writing to the file:\n" + ex.Message);
+            }
+           
         }
 
         private void btnFind_Click(object sender, EventArgs e)
         {
             int index = 0;
             if (lstStrings.SelectedItems.Count > 0)
+            {
                 index = lstStrings.SelectedItems[0].Index + 1;
-
+                if (index == lstStrings.Items.Count)
+                    return;
+            }
             for (var i = index; i < lstStrings.Items.Count; i++)
             {
                 ListViewItem item = lstStrings.Items[i];
@@ -282,6 +325,31 @@ namespace StringEdit
                     break;
                 }
             }
+        }
+
+        private void btnCustomPath_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Executable files *.exe|*.exe";
+            sfd.Title = "Select your custom path";
+            sfd.FileOk += (o, args) =>
+            {
+                txtCustomPath.Text = sfd.FileName;
+            };
+            sfd.ShowDialog();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            btnReset.Visible = false;
+            btnNext.Visible = false;
+            pbProgress.Progress = 0;
+            pbProgress.Visible = false;
+            txtCustomPath.Clear();
+            txtMD5.Clear();
+            txtSHA1.Clear();
+            pnlCoverEdit.Visible = true;
+            pnlCoverBuild.Visible = true;
         }
     }
 }
