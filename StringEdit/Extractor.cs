@@ -33,7 +33,9 @@ namespace StringEdit
             // Executes the extraction process
             extractor.MinimumCharacters = minCharacters;
 
-            foreach (var line in extractor.Extract(path))
+            extractor.Extract(path);
+
+            foreach (var line in extractor.Strings)
             {
                 if (Globals.UseExtremeFilters && ExtremeFilters.Parse(line) == null) continue;
                 if (Globals.UseSmartFilters && SmartFilters.Parse(line) == null) continue;

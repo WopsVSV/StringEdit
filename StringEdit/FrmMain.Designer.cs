@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.strafeTabControl1 = new StrafeTheme.StrafeTabControl();
             this.tabLoad = new System.Windows.Forms.TabPage();
+            this.btnReset = new StrafeTheme.StrafeButton();
             this.btnNext = new StrafeTheme.StrafeButton();
             this.pbProgress = new StrafeTheme.StrafeCircular();
             this.txtBuild = new System.Windows.Forms.Label();
@@ -84,6 +85,15 @@
             this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlCoverEdit = new System.Windows.Forms.Panel();
             this.tabBuild = new System.Windows.Forms.TabPage();
+            this.txtSHA256 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtSHA1 = new System.Windows.Forms.TextBox();
+            this.strafeSeparator4 = new StrafeTheme.StrafeSeparator();
+            this.label20 = new System.Windows.Forms.Label();
+            this.strafeHeader9 = new StrafeTheme.StrafeHeader();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtMD5 = new System.Windows.Forms.TextBox();
             this.strafeSeparator3 = new StrafeTheme.StrafeSeparator();
             this.label22 = new System.Windows.Forms.Label();
             this.strafeHeader10 = new StrafeTheme.StrafeHeader();
@@ -97,22 +107,10 @@
             this.btnToGithub = new System.Windows.Forms.LinkLabel();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnToStringsWebsite = new System.Windows.Forms.LinkLabel();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnToWebsite = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
-            this.strafeSeparator4 = new StrafeTheme.StrafeSeparator();
-            this.label20 = new System.Windows.Forms.Label();
-            this.strafeHeader9 = new StrafeTheme.StrafeHeader();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtMD5 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtSHA1 = new System.Windows.Forms.TextBox();
-            this.btnReset = new StrafeTheme.StrafeButton();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtSHA256 = new System.Windows.Forms.TextBox();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.strafeTabControl1.SuspendLayout();
             this.tabLoad.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -166,6 +164,18 @@
             this.tabLoad.Text = "Load";
             this.tabLoad.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabLoad_DragDrop);
             this.tabLoad.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabLoad_DragEnter);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.EnabledCalc = true;
+            this.btnReset.Location = new System.Drawing.Point(507, 19);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(88, 27);
+            this.btnReset.TabIndex = 7;
+            this.btnReset.Text = "Reset";
+            this.btnReset.Visible = false;
+            this.btnReset.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnReset_Click);
             // 
             // btnNext
             // 
@@ -618,33 +628,34 @@
             this.cmsList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.basicEditToolStripMenuItem,
             this.advancedEditToolStripMenuItem,
+            this.copyToolStripMenuItem,
             this.toolStripSeparator1,
             this.cancelToolStripMenuItem});
             this.cmsList.Name = "cmsList";
-            this.cmsList.Size = new System.Drawing.Size(151, 76);
+            this.cmsList.Size = new System.Drawing.Size(153, 120);
             // 
             // basicEditToolStripMenuItem
             // 
             this.basicEditToolStripMenuItem.Name = "basicEditToolStripMenuItem";
-            this.basicEditToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.basicEditToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.basicEditToolStripMenuItem.Text = "Basic edit";
             this.basicEditToolStripMenuItem.Click += new System.EventHandler(this.basicEditToolStripMenuItem_Click);
             // 
             // advancedEditToolStripMenuItem
             // 
             this.advancedEditToolStripMenuItem.Name = "advancedEditToolStripMenuItem";
-            this.advancedEditToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.advancedEditToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.advancedEditToolStripMenuItem.Text = "Advanced edit";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // cancelToolStripMenuItem
             // 
             this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cancelToolStripMenuItem.Text = "Cancel";
             // 
             // pnlCoverEdit
@@ -683,6 +694,82 @@
             this.tabBuild.TabIndex = 2;
             this.tabBuild.Tag = "#30DF30";
             this.tabBuild.Text = "Build";
+            // 
+            // txtSHA256
+            // 
+            this.txtSHA256.Location = new System.Drawing.Point(76, 214);
+            this.txtSHA256.Name = "txtSHA256";
+            this.txtSHA256.ReadOnly = true;
+            this.txtSHA256.Size = new System.Drawing.Size(348, 23);
+            this.txtSHA256.TabIndex = 20;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(21, 218);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(51, 15);
+            this.label24.TabIndex = 19;
+            this.label24.Text = "SHA256:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(21, 190);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(39, 15);
+            this.label23.TabIndex = 18;
+            this.label23.Text = "SHA1:";
+            // 
+            // txtSHA1
+            // 
+            this.txtSHA1.Location = new System.Drawing.Point(76, 186);
+            this.txtSHA1.Name = "txtSHA1";
+            this.txtSHA1.ReadOnly = true;
+            this.txtSHA1.Size = new System.Drawing.Size(348, 23);
+            this.txtSHA1.TabIndex = 17;
+            // 
+            // strafeSeparator4
+            // 
+            this.strafeSeparator4.Location = new System.Drawing.Point(24, 148);
+            this.strafeSeparator4.Name = "strafeSeparator4";
+            this.strafeSeparator4.Size = new System.Drawing.Size(401, 6);
+            this.strafeSeparator4.TabIndex = 16;
+            this.strafeSeparator4.Text = "strafeSeparator4";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(20, 130);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(222, 15);
+            this.label20.TabIndex = 15;
+            this.label20.Text = "The checksums generated after the build";
+            // 
+            // strafeHeader9
+            // 
+            this.strafeHeader9.Location = new System.Drawing.Point(19, 104);
+            this.strafeHeader9.Name = "strafeHeader9";
+            this.strafeHeader9.Size = new System.Drawing.Size(135, 32);
+            this.strafeHeader9.TabIndex = 14;
+            this.strafeHeader9.Text = "Checksums";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(21, 161);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(35, 15);
+            this.label21.TabIndex = 12;
+            this.label21.Text = "MD5:";
+            // 
+            // txtMD5
+            // 
+            this.txtMD5.Location = new System.Drawing.Point(76, 157);
+            this.txtMD5.Name = "txtMD5";
+            this.txtMD5.ReadOnly = true;
+            this.txtMD5.Size = new System.Drawing.Size(348, 23);
+            this.txtMD5.TabIndex = 11;
             // 
             // strafeSeparator3
             // 
@@ -764,9 +851,6 @@
             this.tabAbout.Controls.Add(this.btnToGithub);
             this.tabAbout.Controls.Add(this.label9);
             this.tabAbout.Controls.Add(this.label8);
-            this.tabAbout.Controls.Add(this.label7);
-            this.tabAbout.Controls.Add(this.btnToStringsWebsite);
-            this.tabAbout.Controls.Add(this.label6);
             this.tabAbout.Controls.Add(this.label5);
             this.tabAbout.Controls.Add(this.btnToWebsite);
             this.tabAbout.Controls.Add(this.label4);
@@ -782,7 +866,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(239, 380);
+            this.label10.Location = new System.Drawing.Point(240, 240);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(136, 15);
             this.label10.TabIndex = 9;
@@ -791,7 +875,7 @@
             // btnToGithub
             // 
             this.btnToGithub.AutoSize = true;
-            this.btnToGithub.Location = new System.Drawing.Point(302, 308);
+            this.btnToGithub.Location = new System.Drawing.Point(303, 168);
             this.btnToGithub.Name = "btnToGithub";
             this.btnToGithub.Size = new System.Drawing.Size(43, 15);
             this.btnToGithub.TabIndex = 8;
@@ -802,7 +886,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(245, 308);
+            this.label9.Location = new System.Drawing.Point(246, 168);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 15);
             this.label9.TabIndex = 7;
@@ -811,40 +895,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(231, 282);
+            this.label8.Location = new System.Drawing.Point(232, 142);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(153, 15);
             this.label8.TabIndex = 6;
             this.label8.Text = "This project is open-source!";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(245, 199);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 15);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Website:";
-            // 
-            // btnToStringsWebsite
-            // 
-            this.btnToStringsWebsite.AutoSize = true;
-            this.btnToStringsWebsite.Location = new System.Drawing.Point(303, 199);
-            this.btnToStringsWebsite.Name = "btnToStringsWebsite";
-            this.btnToStringsWebsite.Size = new System.Drawing.Size(50, 15);
-            this.btnToStringsWebsite.TabIndex = 4;
-            this.btnToStringsWebsite.TabStop = true;
-            this.btnToStringsWebsite.Text = "DL Page";
-            this.btnToStringsWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnToStringsWebsite_LinkClicked);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(204, 166);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(204, 15);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Strings program by Mark Russinovich";
             // 
             // label5
             // 
@@ -875,93 +930,12 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Developed by Sorin Vijoaica (Wops)";
             // 
-            // strafeSeparator4
+            // copyToolStripMenuItem
             // 
-            this.strafeSeparator4.Location = new System.Drawing.Point(24, 148);
-            this.strafeSeparator4.Name = "strafeSeparator4";
-            this.strafeSeparator4.Size = new System.Drawing.Size(401, 6);
-            this.strafeSeparator4.TabIndex = 16;
-            this.strafeSeparator4.Text = "strafeSeparator4";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(20, 130);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(222, 15);
-            this.label20.TabIndex = 15;
-            this.label20.Text = "The checksums generated after the build";
-            // 
-            // strafeHeader9
-            // 
-            this.strafeHeader9.Location = new System.Drawing.Point(19, 104);
-            this.strafeHeader9.Name = "strafeHeader9";
-            this.strafeHeader9.Size = new System.Drawing.Size(135, 32);
-            this.strafeHeader9.TabIndex = 14;
-            this.strafeHeader9.Text = "Checksums";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(21, 161);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(35, 15);
-            this.label21.TabIndex = 12;
-            this.label21.Text = "MD5:";
-            // 
-            // txtMD5
-            // 
-            this.txtMD5.Location = new System.Drawing.Point(76, 157);
-            this.txtMD5.Name = "txtMD5";
-            this.txtMD5.ReadOnly = true;
-            this.txtMD5.Size = new System.Drawing.Size(348, 23);
-            this.txtMD5.TabIndex = 11;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(21, 190);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(39, 15);
-            this.label23.TabIndex = 18;
-            this.label23.Text = "SHA1:";
-            // 
-            // txtSHA1
-            // 
-            this.txtSHA1.Location = new System.Drawing.Point(76, 186);
-            this.txtSHA1.Name = "txtSHA1";
-            this.txtSHA1.ReadOnly = true;
-            this.txtSHA1.Size = new System.Drawing.Size(348, 23);
-            this.txtSHA1.TabIndex = 17;
-            // 
-            // btnReset
-            // 
-            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReset.EnabledCalc = true;
-            this.btnReset.Location = new System.Drawing.Point(507, 19);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(88, 27);
-            this.btnReset.TabIndex = 7;
-            this.btnReset.Text = "Reset";
-            this.btnReset.Visible = false;
-            this.btnReset.Click += new StrafeTheme.Base.ButtonBase.ClickEventHandler(this.btnReset_Click);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(21, 218);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(51, 15);
-            this.label24.TabIndex = 19;
-            this.label24.Text = "SHA256:";
-            // 
-            // txtSHA256
-            // 
-            this.txtSHA256.Location = new System.Drawing.Point(76, 214);
-            this.txtSHA256.Name = "txtSHA256";
-            this.txtSHA256.ReadOnly = true;
-            this.txtSHA256.Size = new System.Drawing.Size(348, 23);
-            this.txtSHA256.TabIndex = 20;
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -1011,12 +985,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.LinkLabel btnToWebsite;
-        private System.Windows.Forms.LinkLabel btnToStringsWebsite;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.LinkLabel btnToGithub;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ColumnHeader colNumber;
         private System.Windows.Forms.ColumnHeader colString;
@@ -1077,6 +1048,7 @@
         private StrafeTheme.StrafeButton btnReset;
         private System.Windows.Forms.TextBox txtSHA256;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     }
 }
 

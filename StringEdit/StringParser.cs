@@ -31,6 +31,8 @@ namespace StringEdit
         {
             ItemValues retVal = new ItemValues();
 
+            retVal.Encoding = "ASCII";
+        
             int count = 0;
 
             count += Finder.CountOccurrences(fileBytes, Encoding.UTF8.GetBytes(input));
@@ -48,6 +50,7 @@ namespace StringEdit
                 else
                     retVal.Encoding = "Both";
             }
+            
 
             retVal.Occurrences = count.ToString();
             retVal.Entropy = ShannonEntropy(input).ToString("F");

@@ -87,6 +87,13 @@ namespace StringEdit
                     return;
                 }
 
+                // Remove panel covers
+                InvokeUI(() =>
+                {
+                    pnlCoverEdit.Visible = false;
+                    pnlCoverBuild.Visible = false;
+                });
+
                 // We know it's a single file because of the DragEnter event
                 string filePath = e.GetDragItems()[0];
                 this.filePath = filePath;
@@ -102,12 +109,14 @@ namespace StringEdit
                 extractor = new Extractor(filePath);
                 extractor.Extract(3);
 
+                lstStrings.BeginUpdate();
                 foreach (var item in extractor.ExtractedStrings)
                 {
-                    StringParser.ItemValues values = StringParser.GetValues(fileBytes, item);
+                    var values = StringParser.GetValues(fileBytes, item);
 
                     AddItem(item, values.Encoding, values.Entropy, values.Occurrences);
                 }
+                lstStrings.EndUpdate();
 
                 // Remove panel covers
                 InvokeUI(() =>
@@ -350,6 +359,11 @@ namespace StringEdit
             txtSHA1.Clear();
             pnlCoverEdit.Visible = true;
             pnlCoverBuild.Visible = true;
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetData("Text", lstStrings.SelectedItems[0].SubItems[1].Text);
         }
     }
 }
